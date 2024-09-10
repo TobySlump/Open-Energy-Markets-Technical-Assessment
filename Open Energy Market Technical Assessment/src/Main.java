@@ -32,19 +32,28 @@ public class Main {
 
         boolean keepPlaying = true;
         while (keepPlaying){
-             String gameMode = chooseGameMode(reader);
+            // Allow user to choose the game mode.
+            String gameMode = chooseGameMode(reader);
 
             // Exit keepPlaying loop preemptively if "Quit" option is chosen.
             if (gameMode.equals("3")){
                 break;
             }
 
+            // Allow user to choose their opponent.
             String opponent = chooseOpponent(reader);
 
 
             // Play chosen game.
             playGame(gameMode, opponent, moveOptions);
 
+            // Ask for a rematch.
+            System.out.println("Thank you for playing, would you like a rematch? (y/n)");
+            String userRematchInput = reader.readLine().toLowerCase();
+            if (!(userRematchInput.equals("y") ||
+                    userRematchInput.equals("yes"))){
+                keepPlaying = false;
+            }
         }
     }
 
