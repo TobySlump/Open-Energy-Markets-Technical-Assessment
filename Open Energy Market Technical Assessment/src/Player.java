@@ -11,13 +11,8 @@ public class Player {
 
     private Map<Integer, String> moveOptions;
 
-    public Player(){
-        this.moveOptions = new HashMap<Integer, String>();
-        moveOptions.put(1, "Rock");
-        moveOptions.put(2, "Paper");
-        moveOptions.put(3, "Scissors");
-        moveOptions.put(4, "Lizard");
-        moveOptions.put(5, "Spock");
+    public Player(Map<Integer, String> moveOptions){
+        this.moveOptions = moveOptions;
     }
 
     public void setOptions(String gameMode){
@@ -25,7 +20,7 @@ public class Player {
     }
 
 
-    public String getUserMove() throws IOException {
+    public int getUserMove() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String userMove = null;
 
@@ -45,7 +40,7 @@ public class Player {
             }
         }
 
-        return userMove;
+        return Integer.parseInt(userMove);
     }
 
     private List<String> getValidMoveList(){

@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.Objects;
+import java.util.*;
 
 public class Main {
     private Player player;
@@ -15,12 +15,18 @@ public class Main {
         // Set up reader to obtain user inputs.
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+        // Set up move options dictionary.
+        Map<Integer, String> moveOptions = new HashMap<Integer, String>();
+        moveOptions.put(1, "Rock");
+        moveOptions.put(2, "Paper");
+        moveOptions.put(3, "Scissors");
+        moveOptions.put(4, "Lizard");
+        moveOptions.put(5, "Spock");
+
         // Set up player and computer objects.
-        player = new Player();
+        player = new Player(moveOptions);
         originalComputer = new OriginalComputer();
         lastChoiceComputer = new LastChoiceComputer();
-
-
 
         System.out.println("Hello and welcome to my Rock Paper Scissors game!");
 
@@ -37,7 +43,7 @@ public class Main {
 
 
             // Play chosen game.
-            playGame(gameMode, opponent);
+            playGame(gameMode, opponent, moveOptions);
 
         }
     }
@@ -92,12 +98,12 @@ public class Main {
         return opponent;
     }
 
-    public void playGame(String gameMode, String opponent) throws IOException {
+    public void playGame(String gameMode, String opponent, Map<Integer, String> moveOptions) throws IOException {
         player.setOptions(gameMode);
         originalComputer.setOptions(gameMode);
         lastChoiceComputer.setOptions(gameMode);
 
-        // Set opponent computer
+        // Set opponent computer.
         Computer computer = switch (opponent) {
             case "1" -> originalComputer;
             case "2" -> lastChoiceComputer;
@@ -109,14 +115,38 @@ public class Main {
         System.out.println("""
                 You are facing the\040""" + computer.getName());
 
-        String userMove = player.getUserMove();
-
+        // Let player and computer choose their moves.
+        int userMove = player.getUserMove();
         int computerMove = computer.getComputerMove();
         System.out.println(computerMove);
 
-        // Decide who wins
-        // Declare winner
-        // Set last choice
+        // Initiate matrix of win/loss combinations.
+        List<List<Integer>> winLossMatrix = new ArrayList<>(List.of(
+                List.of(0, -1, 1, 1, -1),
+                List.of(1, 0, -1, -1, 1),
+                List.of(-1, 1, 0, 1, -1),
+                List.of(-1, 1, -1, 0, 1),
+                List.of(1, -1, 1, -1, 0)
+        ));
 
+        int gameOutcome = winLossMatrix.get(userMove - 1).get(computerMove - 1);
+
+        // Declare winner.
+        switch (gameOutcome){
+            case 0:
+                System.out.println("Same move chosen, you draw!");
+                break;
+            case 1:
+                System.out.println(moveOptions.get(userMove) + " beats " +
+                        moveOptions.get(computerMove) + ", you win!");
+                break;
+            case -1:
+                System.out.println(moveOptions.get(userMove) + " loses to " +
+                        moveOptions.get(computerMove) + ", you lose!");
+                break;
+        }
+
+        // update last user move within LastChoiceComputer object.
+        lastChoiceComputer.setLastChoice(userMove);
     }
 }
