@@ -2,9 +2,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Child class of the Computer class.
+ * When used as an opponent, this class will return the previous move made by the user.
+ * If there is no previous move or the previous move is invalid, a default random move will be made.
+ */
 public class LastChoiceComputer extends Computer {
     private int lastChoice;
-    private String name;
+    private final String name;
 
     public LastChoiceComputer() {
         this.name = "Mighty Last Choice Computer!";
@@ -20,6 +25,12 @@ public class LastChoiceComputer extends Computer {
         return name;
     }
 
+    /**
+     * Method called to produce a valid move.
+     * If possible the previous move made by the user will be used.
+     *
+     * @return The move chosen by the computer as an integer.
+     */
     @Override
     public int getComputerMove(){
         int computerMove;
@@ -37,8 +48,13 @@ public class LastChoiceComputer extends Computer {
         return computerMove;
     }
 
+    /**
+     * A method to produce a list of all possible moves this round, as integers.
+     *
+     * @return The list of possible moves.
+     */
     private List<Integer> getValidMoveList(){
-        List<Integer> validMoveList = new ArrayList<Integer>();
+        List<Integer> validMoveList = new ArrayList<>();
         for (int moveIndex = 1; moveIndex <= options; moveIndex++){
             validMoveList.add(moveIndex);
         }

@@ -1,3 +1,6 @@
+/**
+ * Parent class that contains the base parameters and methods for the computer opponent.
+ */
 public class Computer {
     protected int options;
     protected String name;

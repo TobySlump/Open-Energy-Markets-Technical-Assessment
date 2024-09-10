@@ -10,13 +10,17 @@ public class Main {
         main.run();
     }
 
+
+    /**
+     * The public method called from the Main class that contains the game code.
+     */
     public void run() throws IOException {
 
         // Set up reader to obtain user inputs.
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         // Set up move options dictionary.
-        Map<Integer, String> moveOptions = new HashMap<Integer, String>();
+        Map<Integer, String> moveOptions = new HashMap<>();
         moveOptions.put(1, "Rock");
         moveOptions.put(2, "Paper");
         moveOptions.put(3, "Scissors");
@@ -57,6 +61,12 @@ public class Main {
         }
     }
 
+    /**
+     * Method that allows the user to choose which of the presented options they would like to play.
+     *
+     * @param reader BufferedReader object used to record user inputs in the terminal.
+     * @return The chosen game mode option.
+     */
     public String chooseGameMode(BufferedReader reader) throws IOException {
         String gameMode = null;
 
@@ -83,6 +93,12 @@ public class Main {
         return gameMode;
     }
 
+    /**
+     * Method that allows the user to choose which of the presented opponents they would like to face.
+     *
+     * @param reader BufferedReader object used to record user inputs in the terminal.
+     * @return The chosen opponent option.
+     */
     public String chooseOpponent(BufferedReader reader) throws IOException{
         String opponent = null;
 
@@ -107,6 +123,14 @@ public class Main {
         return opponent;
     }
 
+    /**
+     *
+     * The method that runs the Rock-Paper-Scissor game steps.
+     *
+     * @param gameMode The game mode previously selected by the user.
+     * @param opponent The computer mode previously selected by the user.
+     * @param moveOptions A dictionary of the possible moves.
+     */
     public void playGame(String gameMode, String opponent, Map<Integer, String> moveOptions) throws IOException {
         player.setOptions(gameMode);
         originalComputer.setOptions(gameMode);
@@ -120,7 +144,7 @@ public class Main {
         };
 
 
-        System.out.println("");
+        System.out.println();
         System.out.println("""
                 You are facing the\040""" + computer.getName());
 
@@ -141,18 +165,12 @@ public class Main {
         int gameOutcome = winLossMatrix.get(userMove - 1).get(computerMove - 1);
 
         // Declare winner.
-        switch (gameOutcome){
-            case 0:
-                System.out.println("Same move chosen, you draw!");
-                break;
-            case 1:
-                System.out.println(moveOptions.get(userMove) + " beats " +
-                        moveOptions.get(computerMove) + ", you win!");
-                break;
-            case -1:
-                System.out.println(moveOptions.get(userMove) + " loses to " +
-                        moveOptions.get(computerMove) + ", you lose!");
-                break;
+        switch (gameOutcome) {
+            case 0 -> System.out.println("Same move chosen, you draw!");
+            case 1 -> System.out.println(moveOptions.get(userMove) + " beats " +
+                    moveOptions.get(computerMove) + ", you win!");
+            case -1 -> System.out.println(moveOptions.get(userMove) + " loses to " +
+                    moveOptions.get(computerMove) + ", you lose!");
         }
 
         // update last user move within LastChoiceComputer object.

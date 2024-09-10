@@ -1,8 +1,12 @@
 import java.util.Random;
 
+/**
+ * Child class of the Computer class.
+ * When used as an opponent, this class will return a random move.
+ */
 public class OriginalComputer extends Computer{
 
-    private String name;
+    private final String name;
 
     public OriginalComputer(){
         this.name = "Glorious Common Computer!";
@@ -13,6 +17,11 @@ public class OriginalComputer extends Computer{
         return name;
     }
 
+    /**
+     * Method to generate a random valid move.
+     *
+     * @return The chosen  move.
+     */
     @Override
     public int getComputerMove(){
         // Randomly chooses a move.
