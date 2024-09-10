@@ -13,4 +13,8 @@ public class Computer {
     protected String getName(){
         return name;
     }
+
+    protected int getComputerMove(){
+        return 1;
+    }
 }

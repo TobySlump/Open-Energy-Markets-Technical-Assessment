@@ -110,10 +110,9 @@ public class Main {
                 You are facing the\040""" + computer.getName());
 
         String userMove = player.getUserMove();
-        
 
-        // Player chooses move
-        // Computer chooses move
+        int computerMove = computer.getComputerMove();
+        System.out.println(computerMove);
 
         // Decide who wins
         // Declare winner
