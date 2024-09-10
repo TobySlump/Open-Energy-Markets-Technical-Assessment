@@ -151,7 +151,6 @@ public class Main {
         // Let player and computer choose their moves.
         int userMove = player.getUserMove();
         int computerMove = computer.getComputerMove();
-        System.out.println(computerMove);
 
         // Initiate matrix of win/loss combinations.
         List<List<Integer>> winLossMatrix = new ArrayList<>(List.of(
