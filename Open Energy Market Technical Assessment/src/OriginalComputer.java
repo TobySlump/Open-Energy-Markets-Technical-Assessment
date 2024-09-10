@@ -3,7 +3,7 @@ public class OriginalComputer extends Computer{
     private String name;
 
     public OriginalComputer(){
-        this.name = "Glorious Common Computer";
+        this.name = "Glorious Common Computer!";
     }
 
     @Override

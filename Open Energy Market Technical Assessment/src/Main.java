@@ -92,7 +92,7 @@ public class Main {
         return opponent;
     }
 
-    public void playGame(String gameMode, String opponent){
+    public void playGame(String gameMode, String opponent) throws IOException {
         player.setOptions(gameMode);
         originalComputer.setOptions(gameMode);
         lastChoiceComputer.setOptions(gameMode);
@@ -108,6 +108,9 @@ public class Main {
         System.out.println("");
         System.out.println("""
                 You are facing the\040""" + computer.getName());
+
+        String userMove = player.getUserMove();
+        
 
         // Player chooses move
         // Computer chooses move

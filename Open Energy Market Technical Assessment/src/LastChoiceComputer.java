@@ -3,7 +3,7 @@ public class LastChoiceComputer extends Computer {
     private String name;
 
     public LastChoiceComputer() {
-        this.name = "Mighty Last Choice Computer";
+        this.name = "Mighty Last Choice Computer!";
         this.lastChoice = 0;
     }
 
