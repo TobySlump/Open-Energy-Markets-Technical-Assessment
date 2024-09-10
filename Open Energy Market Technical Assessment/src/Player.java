@@ -8,7 +8,9 @@ public class Player {
         this.options = 2 * Integer.parseInt(gameMode) + 1;
     }
 
+
     public String getUserMove(){
+
 
         return null;
     }

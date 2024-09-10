@@ -1,11 +1,22 @@
-public class LastChoiceComputer {
-    private int options;
+public class LastChoiceComputer extends Computer {
+    private int lastChoice;
+    private String name;
 
-    public LastChoiceComputer(){
+    public LastChoiceComputer() {
+        this.name = "Mighty Last Choice Computer";
+        this.lastChoice = 0;
     }
 
-    public void setOptions(String gameMode) {
-        this.options = 2 * Integer.parseInt(gameMode) + 1;
+    public void setLastChoice(int lastChoice) {
+        this.lastChoice = lastChoice;
     }
 
+    @Override
+    protected String getName(){
+        return name;
+    }
+
+    public void chooseMove(){
+
+    }
 }

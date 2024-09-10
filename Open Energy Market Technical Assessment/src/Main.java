@@ -2,6 +2,9 @@ import java.io.*;
 import java.util.Objects;
 
 public class Main {
+    private Player player;
+    private OriginalComputer originalComputer;
+    private LastChoiceComputer lastChoiceComputer;
     public static void main(String[] args) throws IOException {
         Main main = new Main();
         main.run();
@@ -13,34 +16,28 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         // Set up player and computer objects.
-        Player player = new Player();
-        OriginalComputer originalComputer = new OriginalComputer();
-        LastChoiceComputer lastChoiceComputer = new LastChoiceComputer();
+        player = new Player();
+        originalComputer = new OriginalComputer();
+        lastChoiceComputer = new LastChoiceComputer();
 
-        // Set up game parameters.
-        String gameMode = null;
-        String opponent = null;
+
 
         System.out.println("Hello and welcome to my Rock Paper Scissors game!");
 
         boolean keepPlaying = true;
         while (keepPlaying){
-            gameMode = chooseGameMode(reader);
+             String gameMode = chooseGameMode(reader);
 
             // Exit keepPlaying loop preemptively if "Quit" option is chosen.
             if (gameMode.equals("3")){
                 break;
             }
 
-            opponent = chooseOpponent(reader);
+            String opponent = chooseOpponent(reader);
 
 
             // Play chosen game.
-            player.setOptions(gameMode);
-            originalComputer.setOptions(gameMode);
-            lastChoiceComputer.setOptions(gameMode);
-
-
+            playGame(gameMode, opponent);
 
         }
     }
@@ -90,9 +87,34 @@ public class Main {
                     || Objects.equals(opponent, "2")){
                 validOpponent = true;
             }
-
         }
 
         return opponent;
+    }
+
+    public void playGame(String gameMode, String opponent){
+        player.setOptions(gameMode);
+        originalComputer.setOptions(gameMode);
+        lastChoiceComputer.setOptions(gameMode);
+
+        // Set opponent computer
+        Computer computer = switch (opponent) {
+            case "1" -> originalComputer;
+            case "2" -> lastChoiceComputer;
+            default -> new Computer();
+        };
+
+
+        System.out.println("");
+        System.out.println("""
+                You are facing the\040""" + computer.getName());
+
+        // Player chooses move
+        // Computer chooses move
+
+        // Decide who wins
+        // Declare winner
+        // Set last choice
+
     }
 }

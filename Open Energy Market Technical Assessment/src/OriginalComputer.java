@@ -1,10 +1,13 @@
-public class OriginalComputer {
-    private int options;
+public class OriginalComputer extends Computer{
+
+    private String name;
 
     public OriginalComputer(){
+        this.name = "Glorious Common Computer";
     }
 
-    public void setOptions(String gameMode) {
-        this.options = 2 * Integer.parseInt(gameMode) + 1;
+    @Override
+    protected String getName(){
+        return name;
     }
 }
